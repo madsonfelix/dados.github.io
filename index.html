@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -8,16 +9,47 @@
         }
         $(document).ready(function(){
             // select the image element and add CSS properties to it
-            $('#butRodar').on('click', function(){
-                $("#imgdado").attr('src','media/dadosGirando.gif');
+            $('#butRodarUm').on('click', function(){
+                $("#imgUmDado").attr('src','media/dadosGirando.gif');
                 setTimeout(function(){
                     const dado = rodarDado();
                     var linkImg = "./media/"+dado+".jpg";
-                    $("#imgdado").attr('src', linkImg);
+                    $("#imgUmDado").attr('src', linkImg);
                 }, 500);                
             });
+            $('#butRodarDois').on('click', function(){
+                // Rezeta os dados para o gif
+                $("#imgDadoUm").attr('src','media/dadosGirando.gif');
+                $("#imgDadoDois").attr('src','media/dadosGirando.gif');
+                //Gera e posiciona a imagem random um
+                setTimeout(function(){
+                    const dado = rodarDado();
+                    var linkImg = "./media/"+dado+".jpg";
+                    $("#imgDadoUm").attr('src', linkImg);
+                }, 500);   
+                //Gera e posiciona a imagem random Dois
+                setTimeout(function(){
+                    const dado = rodarDado();
+                    var linkImg = "./media/"+dado+".jpg";
+                    $("#imgDadoDois").attr('src', linkImg);
+                }, 500);                
+            })
+            //Zera os respectivos dados
             $('#zeraDado').on("click", function(){
-                $("#imgdado").attr('src','media/dadosGirando.gif');
+                $("#imgUmDado").attr('src','media/dadosGirando.gif');
+            })
+            $('#zeraDadoDois').on("click", function(){
+                $("#imgDadoUm").attr('src','media/dadosGirando.gif');
+                $("#imgDadoDois").attr('src','media/dadosGirando.gif');
+            })
+            // Seleciona quantos dados serão jogados
+            $('#bUmDado').on("click", function(){
+                $("#umDado").show();
+                $("#doisDado").hide();
+            })
+            $('#bDoisDados').on("click", function(){
+                $("#doisDado").show();
+                $("#umDado").hide();
             })
         });
     </script>   
@@ -26,10 +58,23 @@
   </head>
   <body>
     <div style="text-align:center;">
-      <img id="imgdado" src="media\dadosGirando.gif" alt="Minha Imagem" width="250" height="250" display:none>
+      <button id="bUmDado">JOGAR UM DADO</button>
+      <button id="bDoisDados">JOGAR DOIS DADOS</button>
+    </div>
+        <!-- Div para um dado apenas -->
+    <div id="umDado" style="text-align:center; display:none;">
+      <img id="imgUmDado" src="media\dadosGirando.gif" alt="Minha Imagem" width="250" height="250" display:block>
         <br><br>
-      <button id="butRodar" >Rodar Dado</button>
+      <button id="butRodarUm" >Rodar Dado</button>
       <button id="zeraDado" >Zerar Dado</button>
+    </div>
+        <!-- Div para dois dados simultaneos -->
+    <div id="doisDado" style="text-align:center; display:none;" >
+      <img id="imgDadoUm" src="media\dadosGirando.gif" alt="Minha Imagem" width="250" height="250" display:block>
+      <img id="imgDadoDois" src="media\dadosGirando.gif" alt="Minha Imagem" width="250" height="250" display:block>
+        <br><br>
+      <button id="butRodarDois" >Rodar Dados</button>
+      <button id="zeraDadoDois" >Zerar Dados</button>
     </div>
   </body>
 </html>
