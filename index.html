@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        function rodarDado(){
+            var numeroAleatorio = Math.floor(Math.random() * 6) + 1;
+            return numeroAleatorio;
+        }
+        $(document).ready(function(){
+            // select the image element and add CSS properties to it
+            $('#butRodar').on('click', function(){
+                $("#imgdado").attr('src','media/dadosGirando.gif');
+                setTimeout(function(){
+                    const dado = rodarDado();
+                    var linkImg = "./media/"+dado+".jpg";
+                    $("#imgdado").attr('src', linkImg);
+                }, 500);                
+            });
+            $('#zeraDado').on("click", function(){
+                $("#imgdado").attr('src','media/dadosGirando.gif');
+            })
+        });
+    </script>   
+  <head>
+    <title>Dados</title>
+  </head>
+  <body>
+    <div style="text-align:center;">
+      <img id="imgdado" src="media\dadosGirando.gif" alt="Minha Imagem" width="250" height="250" display:none>
+        <br><br>
+      <button id="butRodar" >Rodar Dado</button>
+      <button id="zeraDado" >Zerar Dado</button>
+    </div>
+  </body>
+</html>
